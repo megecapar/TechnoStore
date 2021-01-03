@@ -182,7 +182,10 @@ public class GUI {
                         "\t\"count\"\tint,\n" +
                         "\tPRIMARY KEY(\"name\")\n" +
                         ");"
+
         );
+        ResultSet count = connection.send_query("SELECT Count(*) from Users");
+        if(count.getInt(1)==0) connection.send_update("INSERT INTO Users (Username,Password,Role) VALUES ('admin','admin',1);");
     }
 
 
